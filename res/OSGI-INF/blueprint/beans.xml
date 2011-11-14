@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+    xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0" default-timeout="20000">
+
+
+   <!--<cm:property-placeholder persistent-id="org.pentaho.spoonexample" >-->
+      <!--<cm:default-properties>-->
+          <!--<cm:property name="message" value="1099"/>-->
+      <!--</cm:default-properties>-->
+  <!--</cm:property-placeholder>-->
+
+
+
+
+  <bean id="SpoonPluginExample_SpoonPluginInterface" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSpoonPlugin" scope="singleton" destroy-method="removeFromContainer">
+    <property name="perspective" ref="HelloWorldPerspective"/>
+
+  </bean>
+
+  <bean id="HelloWorldPerspective" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSwtPerspective">
+    <cm:managed-properties persistent-id="org.pentaho.spoonexample" update-strategy="container-managed"/>
+
+    <!--<property name="message" value="${message}"/>-->
+    <property name="message" value="Default message"/>
+    <property name="messageFormatter" ref="messageFormatterService"/>
+  </bean>
+
+  <reference id="messageFormatterService" interface="org.pentaho.di.plugins.examples.helloworld.MessageFormatter" timeout="30000" availability="optional" />
+
+  <service id="defaultMessageFormatter" interface="org.pentaho.di.plugins.examples.helloworld.MessageFormatter" ranking="-1">
+      <service-properties>
+          <entry key="name" value="Default"/>
+      </service-properties>
+    <bean class="org.pentaho.di.plugins.examples.helloworld.DefaultMessageFormatter"/>
+  </service>
+
+  <bean id="helloPlugin" class="org.pentaho.di.osgi.OSGIPlugin">
+    <property name="mainType" value="org.pentaho.di.ui.spoon.SpoonPluginInterface"/>
+    <property name="name" value="SpoonPluginExample"/>
+    <property name="ID" value="SpoonPluginExample"/>
+    <property name="imageFile" value="MGL.png"/>
+    <property name="description" value="MaxMind GeoIP Lookup"/>
+    <property name="pluginTypeInterface" value="org.pentaho.di.ui.spoon.SpoonPluginType"/>
+    <property name="category" value="spoon"/>
+  </bean>
+
+  <service id="pluginService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="helloPlugin">
+      <service-properties>
+          <entry key="PluginType" value="org.pentaho.di.ui.spoon.SpoonPluginType"/>
+      </service-properties>
+  </service>
+
+<!-- Editor Perspective -->
+
+  <bean id="SpoonEditorPluginExample_SpoonPluginInterface" class="org.pentaho.di.plugins.examples.texteditor.EditorPlugin" scope="singleton" destroy-method="removeFromContainer"/>
+
+  <bean id="editorPlugin" class="org.pentaho.di.osgi.OSGIPlugin">
+    <property name="mainType" value="org.pentaho.di.ui.spoon.SpoonPluginInterface"/>
+    <property name="name" value="SpoonEditorPluginExample"/>
+    <property name="ID" value="SpoonEditorPluginExample"/>
+    <property name="imageFile" value="MGL.png"/>
+    <property name="description" value="Example Editor plugin"/>
+    <property name="pluginTypeInterface" value="org.pentaho.di.ui.spoon.SpoonPluginType"/>
+    <property name="category" value="spoon"/>
+  </bean>
+
+  <!-- Register the plugin as a service so Kettle can find it -->
+  <service id="editorPluginService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="editorPlugin">
+      <service-properties>
+          <entry key="PluginType" value="org.pentaho.di.ui.spoon.SpoonPluginType"/>
+      </service-properties>
+  </service>
+
+  <bean id="SpoonEditorPluginListener_LifecycleListener" class="org.pentaho.di.plugins.examples.texteditor.ExampleSpoonLifecycleListener" scope="singleton"/>
+
+  <bean id="lifecycleBean" class="org.pentaho.di.core.plugins.osgi.OSGIPlugin">
+    <property name="mainType" value="org.pentaho.di.core.lifecycle.LifecycleListener"/>
+    <property name="name" value="SpoonEditorPluginListener"/>
+    <property name="ID" value="SpoonEditorPluginListener"/>
+    <property name="description" value="Example Editor plugin lifecycle listener"/>
+    <property name="pluginTypeInterface" value="org.pentaho.di.core.plugins.LifecyclePluginType"/>
+  </bean>
+  <service id="editorLifecycleService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="lifecycleBean">
+      <service-properties>
+          <entry key="PluginType" value="org.pentaho.di.core.plugins.LifecyclePluginType"/>
+      </service-properties>
+
+  </service>
+
+</blueprint>

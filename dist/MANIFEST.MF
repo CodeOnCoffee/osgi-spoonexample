@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.2
+Created-By: 1.6.0_26-b03-383-11A511 (Apple Inc.)
+Implementation-Title: Pentaho Spoon Plugin Example
+Implementation-Version: TRUNK-SNAPSHOT.development
+Implementation-Vendor: Your Company Here
+Implementation-ProductID: SpoonExample
+Import-Package: org.pentaho.di.core.plugins,org.pentaho.di.osgi, org.p
+ entaho.osgi.impl,org.apache.commons.io,org.apache.commons.logging,org
+ .eclipse.swt.layout,org.eclipse.swt.widgets,org.pentaho.di.core,org.p
+ entaho.di.core.annotations,org.pentaho.di.core.exception,org.pentaho.
+ di.core.gui,org.pentaho.di.core.lifecycle,org.pentaho.di.i18n,org.pen
+ taho.di.repository,org.pentaho.di.ui.core,org.pentaho.di.ui.spoon,org
+ .pentaho.ui.xul,org.pentaho.ui.xul.binding,org.pentaho.ui.xul.compone
+ nts,org.pentaho.ui.xul.containers,org.pentaho.ui.xul.dom,org.pentaho.
+ ui.xul.impl,org.pentaho.ui.xul.swt,org.pentaho.ui.xul.swt.tags,org.pe
+ ntaho.ui.xul.util,org.slf4j,org.w3c.dom
+Export-Package: org.pentaho.di.plugins.examples.helloworld
+Bundle-SymbolicName: org.pentaho.spoonexample
+Bundle-Version: 0.1
+
