@@ -11,8 +11,8 @@
     <conf name="codegen-win" visibility="private" extends="codegen"/>
     <conf name="codegen-linux" visibility="private" extends="codegen"/>
     <conf name="runtime"/>
-  </configurations>
 
+  </configurations>
   <publications>
     <artifact name="${ivy.artifact.id}" type="jar" conf="default"/>
     <artifact name="${ivy.artifact.id}" m:classifier="sources" type="source" ext="jar" conf="source"/>
@@ -20,13 +20,13 @@
 
   <dependencies defaultconf="default->default">
 
-    <dependency org="pentaho.kettle" name="kettle-engine" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
+    <dependency org="pentaho-kettle" name="kettle-engine" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
                 changing="true"/>
-    <dependency org="pentaho.kettle" name="kettle-core" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
+    <dependency org="pentaho-kettle" name="kettle-core" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
                 changing="true"/>
-    <dependency org="pentaho.kettle" name="kettle-db" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
+    <dependency org="pentaho-kettle" name="kettle-db" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
                 changing="true"/>
-    <dependency org="pentaho.kettle" name="kettle-ui-swt" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
+    <dependency org="pentaho-kettle" name="kettle-ui-swt" rev="${dependency.kettle.revision}" transitive="false" conf="default->default"
                 changing="true"/>
 
     <dependency org="pentaho" name="pentaho-xul-core" rev="${dependency.pentaho-xul.revision}" conf="default->default"

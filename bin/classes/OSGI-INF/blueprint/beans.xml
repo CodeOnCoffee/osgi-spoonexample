@@ -10,12 +10,8 @@
       <!--</cm:default-properties>-->
   <!--</cm:property-placeholder>-->
 
-
-
-
   <bean id="SpoonPluginExample_SpoonPluginInterface" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSpoonPlugin" scope="singleton" destroy-method="removeFromContainer">
     <property name="perspective" ref="HelloWorldPerspective"/>
-
   </bean>
 
   <bean id="HelloWorldPerspective" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSwtPerspective">
@@ -85,6 +81,7 @@
       <service-properties>
           <entry key="PluginType" value="org.pentaho.di.core.plugins.LifecyclePluginType"/>
       </service-properties>
-  </service>
+
+  </service>  
 
 </blueprint>

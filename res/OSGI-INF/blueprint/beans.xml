@@ -10,12 +10,8 @@
       <!--</cm:default-properties>-->
   <!--</cm:property-placeholder>-->
 
-
-
-
   <bean id="SpoonPluginExample_SpoonPluginInterface" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSpoonPlugin" scope="singleton" destroy-method="removeFromContainer">
     <property name="perspective" ref="HelloWorldPerspective"/>
-
   </bean>
 
   <bean id="HelloWorldPerspective" class="org.pentaho.di.plugins.examples.helloworld.HelloWorldSwtPerspective">
@@ -74,7 +70,7 @@
 
   <bean id="SpoonEditorPluginListener_LifecycleListener" class="org.pentaho.di.plugins.examples.texteditor.ExampleSpoonLifecycleListener" scope="singleton"/>
 
-  <bean id="lifecycleBean" class="org.pentaho.di.core.plugins.osgi.OSGIPlugin">
+  <bean id="lifecycleBean" class="org.pentaho.di.osgi.OSGIPlugin">
     <property name="mainType" value="org.pentaho.di.core.lifecycle.LifecycleListener"/>
     <property name="name" value="SpoonEditorPluginListener"/>
     <property name="ID" value="SpoonEditorPluginListener"/>
@@ -86,6 +82,6 @@
           <entry key="PluginType" value="org.pentaho.di.core.plugins.LifecyclePluginType"/>
       </service-properties>
 
-  </service>
+  </service>  
 
 </blueprint>
